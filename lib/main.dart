@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'folder.dart'; 
+import 'cards.dart';
 import 'help.dart'; 
 
 void main() async {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const FolderScrn(), 
-    );
+      home: const FolderScrn(), // Corrected this line
+    ); 
   }
 }
