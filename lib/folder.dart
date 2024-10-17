@@ -71,8 +71,8 @@ class _FolderScrnState extends State<FolderScrn> {
       ),
       body: ListView.builder(
         itemCount: _folders.length,
-        itemBuilder: (context, index) {
-          final folder = _folders[index];
+        itemBuilder: (context, idx) {
+          final folder = _folders[idx];
           return ListTile(
             title: Text(folder['folder_name']),
             trailing: IconButton(

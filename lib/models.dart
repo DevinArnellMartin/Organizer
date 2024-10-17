@@ -37,7 +37,7 @@ class CardModel {
       'id': id,
       'name': name,
       'suit': suit,
-      'img_url': imageUrl,
+      'imgUrl': imageUrl,
       'folderID': folderId,
     };
   }

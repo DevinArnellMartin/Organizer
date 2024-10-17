@@ -19,7 +19,26 @@ class DatabaseHelper {
       path,
       version: 1,
       onCreate: (db, version) async {
-        
+        await db.execute('''
+          CREATE TABLE Folders (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            folder_name TEXT NOT NULL,
+            timestamp TEXT
+          )
+        ''');
+        await db.execute('''
+          CREATE TABLE Cards (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            suit TEXT NOT NULL,
+            imgUrl TEXT,
+            folder_id INTEGER,
+            FOREIGN KEY (folder_id) REFERENCES Folders(id) ON DELETE CASCADE
+          )
+        ''');
+      },
+      onOpen: (db) async {
+        await db.execute('PRAGMA foreign_keys = ON');
       },
     );
   }
@@ -27,6 +46,7 @@ class DatabaseHelper {
   Future<void> deleteFolderWithCards(int folderId) async {
     final db = await instance.database;
     await db.transaction((txn) async {
+      
       await txn.delete(
         'Cards',
         where: 'folder_id = ?',
